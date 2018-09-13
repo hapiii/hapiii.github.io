@@ -1,0 +1,872 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="A 65 a 97    0 48//ARC  自动应用计数 自动内存管理//MRC  手动内存管理Student *s =[[[Student alloc]init]autorelease];//用完之后自动释放[s release];//手动释放;给对象发送retain或release消息，可以让计数器+1或-1.当一个对象计数器为0时，// init实例化 就是 初始化 ；//减方法（对象方">
+<meta property="og:type" content="article">
+<meta property="og:title" content="oc基础函数">
+<meta property="og:url" content="http://yoursite.com/child/2014/03/18/oc基础函数/index.html">
+<meta property="og:site_name" content="不要急，不要怕">
+<meta property="og:description" content="A 65 a 97    0 48//ARC  自动应用计数 自动内存管理//MRC  手动内存管理Student *s =[[[Student alloc]init]autorelease];//用完之后自动释放[s release];//手动释放;给对象发送retain或release消息，可以让计数器+1或-1.当一个对象计数器为0时，// init实例化 就是 初始化 ；//减方法（对象方">
+<meta property="og:updated_time" content="2016-11-04T08:03:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="oc基础函数">
+<meta name="twitter:description" content="A 65 a 97    0 48//ARC  自动应用计数 自动内存管理//MRC  手动内存管理Student *s =[[[Student alloc]init]autorelease];//用完之后自动释放[s release];//手动释放;给对象发送retain或release消息，可以让计数器+1或-1.当一个对象计数器为0时，// init实例化 就是 初始化 ；//减方法（对象方">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/child/2014/03/18/oc基础函数/"/>
+
+
+
+
+
+  <title> oc基础函数 | 不要急，不要怕 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">不要急，不要怕</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Life needs curiosity and passion.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/child/2014/03/18/oc基础函数/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="hapii">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://tva1.sinaimg.cn/crop.0.14.750.750.180/005PluWajw8fahgdnankoj30ku0lnjsd.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="不要急，不要怕">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="不要急，不要怕" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                oc基础函数
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-03-18T21:04:23+08:00">
+                2014-03-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/基础/" itemprop="url" rel="index">
+                    <span itemprop="name">基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2014/03/18/oc基础函数/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/03/18/oc基础函数/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2014/03/18/oc基础函数/" class="leancloud_visitors" data-flag-title="oc基础函数">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>A 65 a 97    0 48<br>//ARC  自动应用计数 自动内存管理<br>//MRC  手动内存管理<br>Student *s =[[[Student alloc]init]autorelease];//用完之后自动释放<br>[s release];//手动释放;<br>给对象发送retain或release消息，可以让计数器+1或-1.当一个对象计数器为0时，<br>// init实例化 就是 初始化 ；<br>//减方法（对象方法，动态方法）开辟内存<br>//只能是对象去调用</p>
+<ul>
+<li>(int)addC:(int)a andD: (int)b;<br>//＋方法（类方法）是用类名去调用（student）<br>//[Student addA:11 andB:12]调用（是用函数）；</li>
+</ul>
+<ul>
+<li>(int) addA:(int)a andB:(int)b;<br>//instancetype和 id 差不多，都代表类似任意对象(可以代表任意数据类型)<br>//id 可以代表int float <em>(指针类型);<br>// id = Student </em> =instancetype</li>
+</ul>
+<p>//super 代表他的上一层  是NSObject<br>self = [super init];</p>
+<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串:"></a>字符串:</h2><p>//格式化创建;<br>NSString <em>str1 = [[NSString alloc]initWithFormat:@”gezhihua1chuangjoain1”];<br>//我在创建字符串的时候 给他设定 一定的空间,开始定义大小为0，<br>//➕方法；<br>NSMutableString </em>mstr2 = [NSMutableString stringWithCapacity:0];<br>//➖方法;<br>NSMutableString <em>kong = [[NSMutableString alloc]initWithCapacity:0];<br>字符串的添加<br>[arr addObject:dic[key]];<br>/拼接；stringByAppendingString:得到一个新的数组；<br>NSString </em>str2 =[str1 stringByAppendingString:str];<br>//追加 appendString追加必须是可变字符串<br>[mstr1 appendString: @”小明他朋友”];<br>//判断一个字符串前缀是否包含@“”hasPrefix:<br>//判断一个字符后缀是否包含某一字符串hasSuffix:<br>BOOL prefix =[str2 hasPrefix:@”geshi”];<br>//比较字符串是否相同 isEqualToString:<br>NSString <em>same1 = @”小花”;<br>NSString </em>same2 = @”大花”;<br>BOOL isEqual = [same1 isEqualToString: same2];<br>//rangeOfstring : 查找<br>NSRange range = [we rangeOfString:@”Beijing”];<br>//字符串的比较大小<br>//{NSOrderedAscending升序 , NSOrderedSame, NSOrderedDescending降序};<br>NSComparisonResult result =[st1 compare:st2];<br>//从索引开始截取索引取到最后substringFromIndex:2<br>//截取从开始到索引substringToIndex:2<br>//根据范围截取substringWithRange:<br>NSString <em>s = [d substringWithRange:NSMakeRange(i, 1)];<br>NSString </em>Ne = [hei substringFromIndex:2];<br>NSString <em>Ke = [hei substringToIndex:2];<br>//可变字符串根据范围的修改；replaceCharactersInRange:NSMakeRange(0, 2) withString:<br>[mA replaceCharactersInRange:NSMakeRange(0, 2) withString:@”大白”];<br>NSString </em>str = @”become so numb”;</p>
+<p>NSLog(@”%@”,[str uppercaseString]);//全部变为大写的<br>NSLog(@”%@”,[str lowercaseString]);//字符串里的字符全部变为小写；<br>NSLog(@”%@”,[str capitalizedString]);//首字母变大写，其他字母别小写<br>NSComparisonResult result2 = [@”abc” caseInsensitiveCompare:@”ABC”];//忽略大小写比较<br>//将字符串中的元素用@“ ”切割成字符串；<br>NSArray <em>b =[a componentsSeparatedByString:@” “];<br>//将网址转换成字符串；对象方法；<br>NSURL </em>url = [NSURL URLWithString:@”<a href="https://www.baidu.com" target="_blank" rel="external">https://www.baidu.com</a>“];<br>NSString <em>str5 =[[NSString alloc]initWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&amp;error];<br>//读取桌面上的文件city.xml<br>//NSArray arrayWithContentsOfFile<br>NSString </em>path2 = @”/Users/feique/Desktop/city.xml”;<br>NSArray *arr2 = [NSArray arrayWithContentsOfFile:path2];</p>
+<p>NSString <em>str2 = [[NSString  alloc]initWithContentsOfFile: path2 encoding:NSUTF8StringEncoding error:&amp;error];<br>用来将H5的换行等直接读取出来<br>NSString</em>newStr1=[[[str1 stringByReplacingOccurrencesOfString:@”<br>“ withString:@”\n”]stringByReplacingOccurrencesOfString:@”<i>“ withString:@””]stringByReplacingOccurrencesOfString:@”</i>“ withString:@””];<br>//读取网络上的数据，这个用户体验不太好,markmark<br>//        UIWebView *answerView=[[UIWebView alloc]initWithFrame:CGRectMake(10, CGRectGetMaxY(autherLabel.frame)+20, screen_width-20, answersize.height)];<br>//        answerView. allowsInlineMediaPlayback = NO;<br>//        [answerView loadHTMLString:self.dTModel.answer_content baseURL:nil];</p>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组:"></a>数组:</h2><p>//1.基本的创建数组的方式<br>NSArray <em>arr = @[@”小米”,@[@”xiaomi”,@”华为”],@”苹果”];<br>//通过数组得到一个新的数组;动态方法；<br>NSArray </em>arr2 = [[NSArray alloc]initWithArray:arr];</p>
+<p>NSArray <em>arr3 = [[NSArray alloc]initWithObjects:@”123”,arr,@”hello”, nil];<br>//    数组元素的添加；<br>NSArray </em>arr4 = [arr arrayByAddingObject:@[“魅族”,@”huawei”];<br>//arr5.count arr5 里对象的个数<br>//找对象在数组里边的下标; indexOfObject:<br>int idx = (int)[arr indexOfObject:@”2”];<br>//找下标所对应的数组元素；objectAtIndex:<br>NSString <em>one =[key objectAtIndex:idxV];<br>/可以判断对象是某种类型 isKindOfClass:<br>if ([obj isKindOfClass:[NSArray class]]) {<br>NSLog(@”%@是数组”,obj);<br>//判断元素存在<br>    if ([array1 containsObject:@”a”]) { }<br>    //获取最后一个元素<br>    NSString </em>last = [array1 lastObject];<br>    //根据位置获取<br>    NSString *one = [array1 objectAtIndex:1];<br>    //获取元素位置<br>int index = [array1 indexOfObject:@”b”];</p>
+<p>//将字符串中的元素用@“ ”切割成字符串；<br>NSArray <em>b =[a componentsSeparatedByString:@” “];<br>//将数组中的元素合成一个字符串；<br>NSString </em>str = [arr componentsJoinedByString:@” “];<br>//将不可变数组变为可变数组;NSMutableArray arrayWithArray<br>NSMutableArray *mArr2 = [NSMutableArray arrayWithArray:arr];<br>//添加加一个对象<br>[mArr2 addObject:@”xiaohei”];<br>//mArr2 插入 @”123”到 第0 个位置insertObject:<br>//之后的元素向后移一个下标;<br>//如果插入对象的位置大于数组个数的话，数组越界；奔溃；<br>//最多插到mArr2.count<br>[mArr2 insertObject:@”123” atIndex:mArr2.count];<br>//替换 第 2 个位置的对象 用  @“666”<br>[mArr2 replaceObjectAtIndex:2 withObject:@”666”];<br>NSLog(@”marr2 %@”,mArr2);<br>//删除第2个个对象<br>[mArr2 removeObjectAtIndex:2];</p>
+<h2 id="数组排序"><a href="#数组排序" class="headerlink" title="数组排序:"></a>数组排序:</h2><p>//sortedArrayUsingSelector:快速排序;<br>NSArray <em>arr2 = [arr sortedArrayUsingSelector:@selector(compare:)];<br>//用block设置比较方件进行排序<br>    NSArray </em>array3 = [array sortedArrayUsingComparator:^NSComparisonResult(Student <em>obj1, Student </em> obj2) {<br>        //比较算法<br>    }];<br>//自己定义一种方法；<br>-(NSComparisonResult)studentCompare:(Student *)stu{</p>
+<p>NSComparisonResult result = [self.lastname compare:stu.lastname];</p>
+<p>if(result == NSOrderedSame){<br>result = [self.firstname compare:stu.lastname];<br>}<br>return result;<br>}<br>利用属性排序；<br>/NSSortDescriptor利用属性排序<br>//用phone.name的属性排序；<br>NSSortDescriptor <em>desc1 = [NSSortDescriptor sortDescriptorWithKey:@”phone.name” ascending:YES];<br>／／strArr2里边存的是student，star 是student 这样对象的数组 sortedArrayUsingDescriptors:<br>NSArray  &lt;Student </em>&gt; *stuArr2 = [stuArr sortedArrayUsingDescriptors:descArr];</p>
+<p>//字符串用copy<br>@property(nonatomic,copy) NSString <em>firstname;<br>//int float -&gt;assign<br>@property(nonatomic,assign) int  </em>age;<br>// 数组用strong retain<br>@property (nonatomic,retain)NSArray *books;</p>
+<p>数组遍历；<br>for (int i = 0; i&lt;arr.count; i++)</p>
+<p>for (NSString *str  in arr)<br>for ( id obj in arr)</p>
+<p>[arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL <em> _Nonnull stop) {<br>//obj 为遍历到的对象 idx 下标 stop 停止参数; Nonnull不能为空；<br>if (idx==2) {<br>//stop什么
+</em>stop = YES;<br>}<br>}];<br>NSLog(@”%@,-&gt;地址%zi”,obj,idx);}<br>迭代器：<br>NSLog(@”打印迭代器%@”,[enu allObjects]);<br>//将迭代器里的元素赋值到可变数组中：<br>可变数组有一种机制，赋值之后数据就不存在了<br>obj = [enumerator nextObject]<br>[mArr1 addObject:obj];<br>//正序输出;<br>NSEnumerator <em>enu = [arr objectEnumerator];<br>[marr ];<br>//倒叙输出;<br>NSEnumerator </em>enu = [arr reverseObjectEnumerator];<br>//得到一个倒叙的数组；<br>while (obj = [enu nextObject]) {<br>//obj = [enu nextObject];<br>NSLog(@”%@”,obj);<br>// NSLog(@”打印迭代器%@”,[enu allObjects]);</p>
+<p>}</p>
+<h2 id="字典"><a href="#字典" class="headerlink" title="字典:"></a>字典:</h2><p>//字典的实例话方法；<br>/通过两个数组去创建一个字典，一个数组存的是value ，另一个存的是key；key与value是相互对应的；<br>NSDictionary <em>dic3 = [[NSDictionary alloc]initWithObjects:@[@”21”,@”12”,@”23”] forKeys:@[@”xiaohua”,@”xiaobai”,@”xiaoming”]];<br>//获取字典里边所有的key和value 用数组接受<br>NSArray </em>a = [dic allKeys];<br>NSArray *b = [dic allValues];</p>
+<p>NSDictionary <em>dic4 =<br>[[NSDictionary alloc]initWithObjectsAndKeys:@”value”,@”key”,@”12”,@”xiaoming”,@”23”,@”xiaobai”, nil];<br>//改变字典中的某一ge必须是可变字典；<br>[dic4 setValue:@”33” forKey:@”xiaoming”];<br>//创建一个字典dic5并于dic4一样；<br>NSDictionary </em>dic5 = [[NSDictionary alloc]initWithDictionary:dic4];<br>//插入修改方法；<br>[dic setObject:@”value” forKey:@”key1”];<br>[dic setValue:@”haha” forKey:@”key2”];<br>//删除某个元素根据key值；<br>[dic removeObjectForKey:@”key2”];<br>//删除所有对像；<br>//[dic removeAllObjects];<br>//根据数组的key进行一一对应的删除，删除多个元素，如果没有该key则不处理；<br>[dic removeObjectsForKeys:@[@”key1”,@”key4”]];<br>将其他类型转化为对象：</p>
+<p>//将int 转换为对象；<br>int a =1;<br>NSNumber <em>num =@(a);<br>NSNumber </em>nmu = [NSNumber numberWithInt:a];<br>//将对象转化为int；<br>int b = [num intValue];<br>NSLog(@”对象%@ %@ int%i”,num,nmu,b);<br>//对象与bool  YES 1 NO 0<br>NSNumber <em>num2 = [NSNumber numberWithBool:NO];<br>BOOL o =[num2 boolValue];<br>//对象与float型的转化；<br>NSNumber </em>num3 = [NSNumber numberWithFloat:3.1415];<br>int l=[num3 floatValue];<br>NSLog(@”float%@ %i”,num3,l);</p>
+<p>NSRange range = NSMakeRange(2, 5);<br>//结构题转成对象；<br>NSValue  *v1 = [NSValue valueWithRange:range];<br>//对象转还为结构体<br>NSRange range1 = [v1 rangeValue];</p>
+<h2 id="集合"><a href="#集合" class="headerlink" title="集合:"></a>集合:</h2><p>//集合不能重复，且是无序的；<br>//1.3种创建方法；<br>NSSet <em>set = [NSSet setWithArray:arr];<br>NSSet </em>set1 =[NSSet setWithObjects:@”3”,@”2”,@”1”,nil];<br>//NSSet *set2 =[NSSet setWithSet:set1];<br>NSLog(@” %@%@  %@ “,arr,set,set1);</p>
+<p>NSEnumerator <em>e =[set1 objectEnumerator];<br>NSString </em>s;<br>while (s=[e nextObject]) {<br>NSLog(@”%@”,s);</p>
+<p>}<br>//2.判断某个对象是否为集合的成员，如果是这输出这个成员，<br>//否则为nil<br>NSString <em>str =[set1 member:@”5”];<br>//3.判断集合里边是否包含某个成员；<br>BOOL r =[set containsObject:@”3”];<br>//<br>NSLog(@”%@”,r==1?@”YES”:@”NO”);<br>NSLog(@”%@”,str);<br>//4.将set转化为数组；<br>NSArray </em>arr1 =set1.allObjects;<br>NSLog(@”%@”,arr1);<br>//获得集合中的任意一个对象；<br>NSString *str2 =[set1 anyObject];<br>NSLog(@”%@”,str2);<br>//判断两个集合是否相同；<br>BOOL r1 = [set1 isEqualToSet:set];<br>NSLog(@”%@”,r1==1?@”YES”:@”NO”);<br>//7.判断两个集合是否有交集；<br>BOOL r2 =[set intersectsSet:set];<br>NSLog(@”%@”,r2==1?@”YES”:@”NO”);<br>//8.判断一个set是否是另一个的子集；<br>BOOL r3 =[set1 isSubsetOfSet:set];<br>NSLog(@”%@”,r3==1?@”YES”:@”NO”);</p>
+<p>//可变集合NSMutableSet可以使用NSSet中的所有方法；<br>//1.如何创建；<br>NSMutableSet <em>mset =[NSMutableSet setWithCapacity:10];<br>//2.添加元素；<br>[mset addObject:@”3”];<br>[mset addObject:@”2”];<br>//3.删除；<br>[mset removeObject:@”3”];<br>//4.继承方法演示count，5.遍历；<br>NSUInteger count =set.count;<br>//为什么是％lu<br>NSLog(@”%lu”,count);<br>NSEnumerator </em>e1 =[mset objectEnumerator];<br>NSString <em>S;<br>while (S =[e1 nextObject]) {<br>NSLog(@”%@”,s);<br>}<br>//6.添加一个数组；<br>NSArray </em>arr2 =@[@”one”,@”two”,@”three”];<br>[mset addObjectsFromArray:arr2];<br>NSLog(@”%@”,mset);<br>//7.删除所有元素；<br>//[mset removeAllObjects];<br>//8.求两个集合的并集；注意必须是可变集合；<br>NSMutableSet *mset2 =[NSMutableSet setWithSet:mset];<br>[mset2 addObject:@”ha”];<br>[mset unionSet:mset2];</p>
+<p>NSLog(@”%@”,mset);<br>//交集；<br>[mset intersectSet:mset2];<br>//求两个集合的差集；<br>[mset2 minusSet:mset];<br>复制；</p>
+<p>复制为不可变；        //-(id)copy;<br>复制为可变；         //-(id)mutableCopy;<br>NSMutableArray <em>marr3 =[marr2 mutableCopy];<br>//自定义的类要想实现NScopying协议或NSmutableCopying协议；<br>Person </em>p3 =[p1 mutableCopy];<br>@interface Person : NSObject<nsmutablecopying><br>-(id)mutableCopyWithZone:(NSZone <em>)zone{<br>NSLog(@”mutablecopywithZone”);<br>Person </em>pre =[[Person allocWithZone:zone]init];<br>return pre;<br>}<br>Block排序！！！<br>NSArray <em>arr =@[@”43”,@”12”,@”31”];<br>NSArray </em>arr1 =[arr sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {<br>return [obj1 compare:obj2];</nsmutablecopying></p>
+<p>}];</p>
+<h2 id="协议与Block"><a href="#协议与Block" class="headerlink" title="协议与Block:"></a>协议与Block:</h2><p>通常建议建立一个OCProtocol单独保存协议，只有.h没有.m，因为它不需要实现类。<br>如果需要同时实现两个协议，则&lt;协议1,协议2&gt;。<br>如果需要控制协议里的方法必须要实现，则需要在方法的上面加上@required，这样一来，这个标记下的所有方法都必须实现了，但是即便标记了，也可以不实现，编译器不会报错，因为C语言语法弱。选择性实现的用@optional表示，默认是required（废的）。<br>判断一个类是否实现了协议，有如下方法：<br>if ([listener conformsToProtocol:@protocol(ButtonDelegate)])</p>
+<p>Block封装了一段代码，可以在任何时候执行，类似于函数指针，也类似C#的Func和Action，它用尖括号定义，可以做参数注入lambda，也可以做回调，比如：<br>int (^Sum)(int,int) = ^(int a, int b) {<br>        return a + b;<br>};<br>int a = Sum(10,11);<br>在block里是可以使用花括号外的变量的，但是不能修改它，类似java在外部加一个final，除非加一个关键字<strong>block就能改变了，比如：<br>void test() {
+    </strong>block int c = 1;<br>    int (^Sum)(int,int) = ^(int a, int b) {<br>        c = 10;<br>        return a + b + c;<br>    };<br>    NSLog(@”%i”, Sum(1,2));<br>}<br>另外可以提前声明block的类型：<br>typedef int (^MySum) (int,int);<br>这样就可以用这个类型来定义block了：<br>MySum sum = ^(int a, int b) {<br>    return a+b;<br>};<br>下面是一个block作为监听器属性的例子，可以理解为从调用层set一个lambda表达式进去：<br>//main.m</p>
+<p>#import <foundation foundation.h=""></foundation></p>
+<p>#import “Button.h”<br>int main(int argc, const char <em> argv[])<br>{<br>    @autoreleasepool {<br>        Button </em>btn = [[[Button alloc] init] autorelease];<br>        btn.block = ^(Button *btn) {<br>            NSLog(@”按钮-%@被点击了”, btn);<br>        };<br>        [btn click];<br>    }<br>    return 0;<br>}<br>//buttom.h</p>
+<p>#import <foundation foundation.h=""><br>@class Button;<br>//定义一个block的类型<br>typedef void (^ButtonBlock) (Button *);<br>@interface Button : NSObject<br>//定义一个block的属性<br>@property (nonatomic, assign) ButtonBlock block;<br>-(void)click;<br>@end<br>//Button.m</foundation></p>
+<p>#import “Button.h”<br>@implementation Button<br>-(void)click{<br>    _block(self);<br>}<br>@end<br>//4.类型定义typedef define<br>//typedef返回值类型（^BlockName）参数列表<br>typedef void(^my_blaock)(void);<br>my_blaock b = ^(void){NSLog(@”hello,world”);};<br>b();</p>
+<p>typedef  int (^_SumBlock)(int a,int b);<br>_SumBlock sumBlock = ^(int a,int b){return a+b;};<br>int su = sumBlock(1,3);</p>
+<h2 id="单例"><a href="#单例" class="headerlink" title="单例:"></a>单例:</h2><p>static MusicManger <em>manager =nil;<br>//最普通的写法；<br>+(MusicManger </em>)shareMusicManger{</p>
+<p>if (manager==nil) {<br>manager = [[MusicManger alloc] init];<br>}<br>return  manager;<br>}<br>//GCD的写法；<br>//保证在多线程的时候有且只有一个一次实例化；<br>+(MusicManger *)shareMusicManger{</p>
+<p>static dispatch_once_t onceToken;<br>dispatch_once(&amp;onceToken,^{</p>
+<p>if (manager==nil) {<br>manager = [[MusicManger alloc] init];<br>}</p>
+<p>});<br>return manager;<br>}<br>//加锁的写法；<br>+(MusicManger <em>)shareMusicManger{<br>@synchronized(self) {<br>if (manager==nil) {<br>manager = [[MusicManger alloc] init];<br>}<br>return manager;<br>}<br>系统单例<br>//NSdefaults 他是以Key －value的方式进行存储数据；<br>NSUserDefaults </em>defaults = [NSUserDefaults standardUserDefaults];<br>－（文件操作单例）<br>NSFileManager *fileManger = [NSFileManager defaultManager];<br>//删除一个文件；<br>BOOL isFinish = [fileManger removeItemAtPath:@”/Users/feique/Desktop/haha.txt” error:nil];<br>BOOL ha =[fileManger fileExistsAtPath:@”/Users/feique/Desktop/haha.txt” isDirectory:nil];<br>if (ha) {<br>if (isFinish) {<br>NSLog(@”文件删除成功”);<br>}else{<br>NSLog(@”文件删除失败”);}<br>}else{<br>NSLog(@”路径无效”);<br>}</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+
+
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/03/20/UI常见问题/" rel="prev" title="UI常见问题">
+                UI常见问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2014/03/18/oc基础函数/"
+           data-title="oc基础函数" data-url="http://yoursite.com/child/2014/03/18/oc基础函数/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://tva1.sinaimg.cn/crop.0.14.750.750.180/005PluWajw8fahgdnankoj30ku0lnjsd.jpg"
+               alt="hapii" />
+          <p class="site-author-name" itemprop="name">hapii</p>
+          <p class="site-description motion-element" itemprop="description">Stay Hungry. Stay Foolish.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">39</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/hapiii" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/5339381110/profile?topnav=1&wvr=6&is_all=1" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/d746cffd2a58/timeline" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/oncezhu/activities" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串"><span class="nav-number">1.</span> <span class="nav-text">字符串:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组"><span class="nav-number">2.</span> <span class="nav-text">数组:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组排序"><span class="nav-number">3.</span> <span class="nav-text">数组排序:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字典"><span class="nav-number">4.</span> <span class="nav-text">字典:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#集合"><span class="nav-number">5.</span> <span class="nav-text">集合:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#协议与Block"><span class="nav-number">6.</span> <span class="nav-text">协议与Block:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单例"><span class="nav-number">7.</span> <span class="nav-text">单例:</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hapii</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"hapii"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("zc81aNb6TWWwuKFCHYYHVEwj-gzGzoHsz", "fzUiJKfzp0BdJLPgoyW4Tf5w");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+
+</body>
+</html>
